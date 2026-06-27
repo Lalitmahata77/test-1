@@ -3,16 +3,39 @@ import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
-import { type NavItem } from '@/types';
+import { NavItemaWithSubmenu, type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
+import { BookOpen, Folder, LayoutGrid, Hotel, Users} from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
+// import hotels from '@/routes/hotels/index.js';
 
-const mainNavItems: NavItem[] = [
+const navItems: NavItemaWithSubmenu[] = [
     {
         title: 'Dashboard',
         href: '/dashboard',
         icon: LayoutGrid,
+    },
+    {
+        title: 'Hotels',
+        href: '/hotels',
+        icon: Hotel,
+    },
+    {
+        title: 'Users',
+        href: '/users',
+        icon: Users,
+        submenu: [
+            {
+                title: 'Assign Manager',
+                href: '/users/assign-manager',
+                icon: LayoutGrid,
+            },
+            {
+                title: 'All Users',
+                href: '/users/all-users',
+                icon: Users,
+            }
+        ],
     },
 ];
 
@@ -45,7 +68,7 @@ const footerNavItems: NavItem[] = [
         </SidebarHeader>
 
         <SidebarContent>
-            <NavMain :items="mainNavItems" />
+            <NavMain :items="navItems" />
         </SidebarContent>
 
         <SidebarFooter>
